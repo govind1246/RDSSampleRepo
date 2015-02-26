@@ -12,4 +12,9 @@ public class SampleController {
 		m.addAttribute("name", "CodeTutr");
 		return "home";
 	}
+	
+	@RequestMapping("customer")
+    public String loadCustomerPage(Model m) {
+        return "customer";
+    }
 }
