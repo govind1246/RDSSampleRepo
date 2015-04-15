@@ -14,7 +14,7 @@ public interface CustomerDAO {
 
     public Customer getCustomer(Long id);
 
-    public List<Customer> listStudents();
+    public List<Customer> listCustomers();
 
     public void delete(Long id);
 

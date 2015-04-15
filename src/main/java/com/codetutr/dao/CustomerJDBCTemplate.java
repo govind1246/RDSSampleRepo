@@ -36,9 +36,11 @@ public class CustomerJDBCTemplate implements CustomerDAO {
     }
 
     @Override
-    public List<Customer> listStudents() {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Customer> listCustomers() {
+        String SQL = "select * from CUSTOMER";
+        List <Customer> customers = jdbcTemplateObject.query(SQL, 
+                                  new CustomerMapper());
+        return customers;
     }
 
     @Override

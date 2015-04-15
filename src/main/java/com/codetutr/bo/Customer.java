@@ -24,7 +24,7 @@ public class Customer implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name.trim();
     }
 
     public String getAddress() {
@@ -32,7 +32,7 @@ public class Customer implements Serializable {
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.address = address.trim();
     }
 
     public Long getMobile() {
@@ -48,7 +48,7 @@ public class Customer implements Serializable {
     }
 
     public void setEmailid(String emailid) {
-        this.emailid = emailid;
+        this.emailid = emailid.trim();
     }
 
 }

@@ -10,10 +10,10 @@ public class CustomerMapper  implements RowMapper<Customer> {
     public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
         Customer customer = new Customer();
         customer.setId(rs.getLong("id"));
-        customer.setName(rs.getString("name"));
-        customer.setAddress(rs.getString("address"));
+        customer.setName(rs.getString("name").trim());
+        customer.setAddress(rs.getString("address").trim());
         customer.setMobile(rs.getLong("mobile"));
-        customer.setEmailid(rs.getString("email"));
+        customer.setEmailid(rs.getString("email").trim());
         return customer;
      }
 }
