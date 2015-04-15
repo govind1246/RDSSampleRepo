@@ -10,6 +10,12 @@ dependencies {
    providedCompile 'javax.servlet:servlet-api:2.5'
    compile 'org.springframework:spring-webmvc:3.2.2.RELEASE'
    compile 'com.amazonaws:aws-java-sdk:1.9.7'
+   compile 'org.springframework:spring-jdbc:4.1.6.RELEASE'
+   compile 'org.springframework:spring-test:4.1.6.RELEASE'
+   compile 'com.google.code.gson:gson:2.3.1'
+   compile 'org.springframework.cloud:spring-cloud-aws-context:1.0.0.RELEASE'
+   compile 'junit:junit:4.12'
+   runtime 'postgresql:postgresql:9.1-901.jdbc4'
    runtime 'javax.servlet:jstl:1.1.2'
 }
 
