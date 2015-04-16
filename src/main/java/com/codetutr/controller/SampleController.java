@@ -2,6 +2,8 @@ package com.codetutr.controller;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -20,7 +22,7 @@ public class SampleController {
 
     ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
     CustomerJDBCTemplate jdbcTemplate = (CustomerJDBCTemplate)applicationContext.getBean("customerJDBCTemplate");
-
+    private static Logger logger = LogManager.getLogger(SampleController.class);
     @RequestMapping("home")
     public String loadHomePage(Model m) {
         m.addAttribute("name", "CodeTutr");
@@ -29,6 +31,7 @@ public class SampleController {
 
     @RequestMapping("customerview")
     public String loadCustomerPage(Model m) {
+    	logger.debug("In customerview");
         return "customer";
     }
 

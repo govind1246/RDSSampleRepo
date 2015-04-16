@@ -7,11 +7,14 @@ import javax.sql.DataSource;
 import com.codetutr.bo.Customer;
 import com.codetutr.bo.mapper.CustomerMapper;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class CustomerJDBCTemplate implements CustomerDAO {
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplateObject;
+    private Logger logger = LogManager.getLogger(CustomerJDBCTemplate.class);
     @Override
     public void setDataSource(DataSource ds) {
         dataSource = ds;
@@ -20,6 +23,7 @@ public class CustomerJDBCTemplate implements CustomerDAO {
 
     @Override
     public void create(Customer customer) {
+    	logger.debug("create is executed!");
         String SQL = "insert into CUSTOMER (ID, name,address,mobile,email) values (?, ?,?,?,?)";
         
         jdbcTemplateObject.update( SQL, customer.getId(), customer.getName(),customer.getAddress(),customer.getMobile(),customer.getEmailid());           
