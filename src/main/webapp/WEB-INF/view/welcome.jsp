@@ -16,6 +16,10 @@
         <td colspan="2" align="center"><%="Welcome "+customer.getName()+" !!!!. Your details Processed." %></td>
     </tr>
     <tr>
+        <td>Id </td>
+        <td><%=customer.getId()%></td>
+    </tr>
+    <tr>
         <td>Name </td>
         <td><%=customer.getName()%></td>
     </tr>

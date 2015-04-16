@@ -28,7 +28,7 @@ public class CustomerJDBCTemplate implements CustomerDAO {
     }
 
     @Override
-    public Customer getCustomer(Long id) {
+    public Customer getCustomer(Integer id) {
         String SQL = "select * from CUSTOMER where id = ?";
         Customer customer = jdbcTemplateObject.queryForObject(SQL, 
                           new Object[]{id}, new CustomerMapper());

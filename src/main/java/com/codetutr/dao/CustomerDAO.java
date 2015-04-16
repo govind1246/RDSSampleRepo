@@ -12,7 +12,7 @@ public interface CustomerDAO {
 
     public void create(Customer customer);
 
-    public Customer getCustomer(Long id);
+    public Customer getCustomer(Integer id);
 
     public List<Customer> listCustomers();
 

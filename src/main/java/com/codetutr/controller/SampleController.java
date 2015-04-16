@@ -59,7 +59,7 @@ public class SampleController {
      * */
     @RequestMapping(value = "customer/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Customer getCustomer(@PathVariable("id") Long id) {
+    public Customer getCustomer(@PathVariable("id") Integer id) {
         Customer listCustomers = jdbcTemplate.getCustomer(id);
         return listCustomers;
     }

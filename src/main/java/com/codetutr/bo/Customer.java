@@ -5,17 +5,17 @@ import java.io.Serializable;
 public class Customer implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Long id;
+    private Integer id;
     private String name;
     private String address;
     private Long mobile;
     private String emailid;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
