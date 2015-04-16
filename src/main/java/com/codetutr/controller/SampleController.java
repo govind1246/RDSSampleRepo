@@ -35,6 +35,11 @@ public class SampleController {
         return "customer";
     }
 
+    @RequestMapping("registration")
+    public String registration(Model m) {
+        return "registration";
+    }
+
     
     /**
      * curl -i -X POST -H "Content-Type:application/json" http://localhost:8080/customer -d '{"name":"govind","id":2,"address":"my home","mobile":980878,"emailid":"govind.nsit07@gmail.com"}'
