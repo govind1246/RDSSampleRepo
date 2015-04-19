@@ -39,6 +39,11 @@ public class SampleController {
     public String registration(Model m) {
         return "registration";
     }
+    
+    @RequestMapping("customers")
+    public String getAllCustomersWithUI(Model m) {
+        return "customers";
+    }
 
     
     /**
