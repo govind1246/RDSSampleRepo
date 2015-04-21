@@ -7,8 +7,7 @@
 </head>
 <body class="blurBg-false" style="background-color: #EBEBEB">
 
-	<link rel="stylesheet" href="/css/formoid-solid-blue.css"
-		type="text/css" />
+	<link rel="stylesheet" href="/css/formoid-solid-blue.css" type="text/css" />
 	<script type="text/javascript" src="/js/jquery.min.js"></script>
 	<form action="insertCustomer" class="formoid-solid-blue"
 		style="background-color: #FFFFFF; font-size: 14px; font-family: 'Roboto', Arial, Helvetica, sans-serif; color: #34495E; max-width: 480px; min-width: 150px"

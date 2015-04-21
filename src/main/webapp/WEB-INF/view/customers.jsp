@@ -1,117 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ include file="include.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Customer Details</title>
-<link
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" href="http://cdn.datatables.net/responsive/1.0.5/css/dataTables.responsive.css">
-<script type="text/javascript" src="http://cdn.datatables.net/responsive/1.0.5/js/dataTables.responsive.js"></script>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="/css/dataTables.responsive.css">
+<jsp:include page="pageJS.jsp"/>
+<jsp:include page="loadJS.jsp"/>
+<script>
+P.when('jQuery').execute(function($){
+	loadJS('/js/jquery.dataTables.min.js', function() {
+	    P.register('dataTables');
+	});
+	loadJS('/js/dataTables.responsive.js', function() {
+	    P.register('dataTablesResponsive');
+	});
+});
+</script>    
 </head>
 <body>
 	<form action="insertCustomer" method="post">
-		    <table id="myTable" class="display nowrap" cellspacing="0" width="100%">
+	        <!--  https://datatables.net/extensions/responsive/examples/display-control/classes.html -->
+		    <table id="myTable" class="display responsive" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-						<th>ENO</th>
-						<th>EMPName</th>
-						<th>Country</th>
-						<th>Salary</th>
+						<th class="min-tablet">Id</th>
+						<th class="all">Name</th>
+						<th class="desktop" >Address</th>
+						<th class="min-tablet">Mobile</th>
+						<th class="min-phone-l">Emailid</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>001</td>
-						<td>Anusha</td>
-						<td>India</td>
-						<td>10000</td>
-					</tr>
-					<tr>
-						<td>002</td>
-						<td>Charles</td>
-						<td>United Kingdom</td>
-						<td>28000</td>
-					</tr>
-					<tr>
-						<td>003</td>
-						<td>Sravani</td>
-						<td>Australia</td>
-						<td>7000</td>
-					</tr>
-					<tr>
-						<td>004</td>
-						<td>Amar</td>
-						<td>India</td>
-						<td>18000</td>
-					</tr>
-					<tr>
-						<td>005</td>
-						<td>Lakshmi</td>
-						<td>India</td>
-						<td>12000</td>
-					</tr>
-					<tr>
-						<td>006</td>
-						<td>James</td>
-						<td>Canada</td>
-						<td>50000</td>
-					</tr>
-
-					<tr>
-						<td>007</td>
-						<td>Ronald</td>
-						<td>US</td>
-						<td>75000</td>
-					</tr>
-					<tr>
-						<td>008</td>
-						<td>Mike</td>
-						<td>Belgium</td>
-						<td>100000</td>
-					</tr>
-					<tr>
-						<td>009</td>
-						<td>Andrew</td>
-						<td>Argentina</td>
-						<td>45000</td>
-					</tr>
-
-					<tr>
-						<td>010</td>
-						<td>Stephen</td>
-						<td>Austria</td>
-						<td>30000</td>
-					</tr>
-					<tr>
-						<td>011</td>
-						<td>Sara</td>
-						<td>China</td>
-						<td>750000</td>
-					</tr>
-					<tr>
-						<td>012</td>
-						<td>JonRoot</td>
-						<td>Argentina</td>
-						<td>65000</td>
-					</tr>
 				</tbody>
 			</table>
 	</form>
-	<script>
-        $(document).ready(function(){
-        	$('#myTable').DataTable( {
-                responsive: true
-            } );
+    	<script>
+        P.when('jQuery','dataTables','dataTablesResponsive').execute(function(){
+            $(document).ready(function(){
+            	$.getJSON("/customer", {}, function(data) {
+                    var waitListTable = $("#myTable").DataTable();
+                    waitListTable.clear().draw();
+                    for (var i = 0; i < data.length; i++) {
+                  	  var item = [data[i]["id"],data[i]["name"],data[i]["address"],data[i]["mobile"],data[i]["emailid"]];
+                      waitListTable.row.add(item).draw();
+                    }
+                  });
+            });
         });
-    </script>
+        P.when('jQuery').execute(function(){
+           
+        });
+        </script>
 </body>
 </html>
