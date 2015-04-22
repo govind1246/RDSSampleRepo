@@ -19,16 +19,30 @@ public class InsertCustomerServlet {
 
     @RequestMapping(value="/insertCustomer")
     public String insertCustomer(HttpServletRequest request, Model model) {
-        Customer customer=new Customer();
+        Customer customer = extractCustomer(request);
+        Random randomGenerator = new Random();
+        customer.setId(randomGenerator.nextInt(2000000));
+        jdbcTemplate.create(customer);
+        return "redirect:/customers";
+    }
+    
+    @RequestMapping(value="/modifyCustomer")
+    public String modifyCustomer(HttpServletRequest request, Model model) {
+        Customer customer = extractCustomer(request);
+        customer.setId(Integer.valueOf(request.getParameter("id")));
+        jdbcTemplate.update(customer);
+//        model.addAttribute("cust", jdbcTemplate.getCustomer(customer.getId()));
+        return "redirect:/customers";
+    }
+    
+    private Customer extractCustomer(HttpServletRequest request) {
+		Customer customer=new Customer();
         customer.setName(request.getParameter("name"));
         customer.setAddress(request.getParameter("address"));
         customer.setMobile(Long.valueOf(request.getParameter("mobile")));
         customer.setEmailid(request.getParameter("emailid"));
-        Random randomGenerator = new Random();
-        customer.setId(randomGenerator.nextInt(2000000));
-        jdbcTemplate.create(customer);
-        model.addAttribute("cust", jdbcTemplate.getCustomer(customer.getId()));
-        return "welcome";
-    }
+		return customer;
+	}
+
  
 }

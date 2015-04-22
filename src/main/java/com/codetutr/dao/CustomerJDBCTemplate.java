@@ -53,4 +53,12 @@ public class CustomerJDBCTemplate implements CustomerDAO {
         
     }
 
+	public void update(Customer customer) {
+		logger.debug("create is executed!");
+        String SQL = "update CUSTOMER set name=?,address=?,mobile=?,email=? where id = ?";
+        
+        jdbcTemplateObject.update( SQL, customer.getName(),customer.getAddress(),customer.getMobile(),customer.getEmailid(),customer.getId());           
+        System.out.println("update database database successfully");
+	}
+
 }

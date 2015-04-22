@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codetutr.bo.Customer;
@@ -38,6 +39,16 @@ public class SampleController {
     @RequestMapping("registration")
     public String registration(Model m) {
         return "registration";
+    }
+    
+    /*
+     * curl http://localhost:8080/modify/1
+     * */
+    @RequestMapping(value = "modify")
+    public String modify(Model m, @RequestParam(value="id", required=false) Integer id) {
+        Customer customer = jdbcTemplate.getCustomer(id);
+        m.addAttribute("modifyCustomer", customer);
+        return "modify";
     }
     
     @RequestMapping("customers")
@@ -76,4 +87,6 @@ public class SampleController {
         Customer listCustomers = jdbcTemplate.getCustomer(id);
         return listCustomers;
     }
+    
+    
 }
